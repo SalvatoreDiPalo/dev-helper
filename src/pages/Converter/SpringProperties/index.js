@@ -10,9 +10,9 @@ import inputHandler from "./inputHandler";
 import deflate from "./deflate";
 import outputFormatter from "./outputFormatter";
 
-import { DefaultsMap, Formats } from "../../utils/constants";
+import { DefaultsMap, Formats } from "../../../utils/constants";
 
-export default function Converter() {
+export default function SpringPropertiesConverter() {
   const defaultType = Formats.YAML;
   const [inputType, setInputType] = useState(defaultType);
   const [inputText, setInputText] = useState(
