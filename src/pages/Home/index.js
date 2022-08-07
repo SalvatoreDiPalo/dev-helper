@@ -18,8 +18,8 @@ export default function Home() {
       <Grid container spacing={2}>
         <Grid item>
           <Card>
-            <CardActionArea component="a" href="/test">
-              <CardContent>Environment Variable Converter</CardContent>
+            <CardActionArea component="a" href="/converters/spring-properties">
+              <CardContent>Spring Properties Converter</CardContent>
             </CardActionArea>
           </Card>
         </Grid>

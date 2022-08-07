@@ -1,7 +1,7 @@
 import yaml from "js-yaml";
 // @ts-ignore
 import _ from "lodash";
-import { Formats } from "../../utils/constants";
+import { Formats } from "../../../utils/constants";
 
 const inputHandler = (type, text) => {
   var data;

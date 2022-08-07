@@ -1,6 +1,6 @@
 import yaml from "js-yaml";
 import _ from "lodash";
-import { Formats } from "../../utils/constants";
+import { Formats } from "../../../utils/constants";
 
 const outputFormatter = (outputType, properties) => {
   if (outputType === Formats.SIMPLE) {
