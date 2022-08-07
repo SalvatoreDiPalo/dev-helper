@@ -5,6 +5,7 @@ import ResponsiveAppBar from "./components/AppBar";
 
 import Home from "./pages/Home";
 import Converter from "./pages/Converter";
+import UUIDGenerator from "./pages/Generator/UUID";
 import { Container } from "@mui/material";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/test" element={<Converter />} />
+          <Route path="/generator/uuid" element={<UUIDGenerator />} />
         </Routes>
       </Container>
     </div>

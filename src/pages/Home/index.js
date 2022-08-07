@@ -23,6 +23,13 @@ export default function Home() {
             </CardActionArea>
           </Card>
         </Grid>
+        <Grid item>
+          <Card>
+            <CardActionArea component="a" href="/generator/uuid">
+              <CardContent>UUID Generator</CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
       </Grid>
     </div>
   );
