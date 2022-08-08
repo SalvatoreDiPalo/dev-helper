@@ -1,4 +1,14 @@
-// https://github.com/jusufazer/yaml2properties/blob/master/src/scripts/parser.js
+/**
+ * https://github.com/jusufazer/yaml2properties/blob/master/src/scripts/parser.js
+ * Deflates the given JSON structure into an array of strings in the format
+ *   <key>=<value>
+ * where key is a string constructed from traversing the json hierarchy, and value is the bottom most string value for
+ * that particular hierarchy traversal.
+ *
+ * @param json
+ * @param prefix
+ * @returns {Array}
+ */
 const deflate = (json, prefix) => {
   var result = [];
   var keys = Object.keys(json);

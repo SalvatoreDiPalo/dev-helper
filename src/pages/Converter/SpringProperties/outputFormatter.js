@@ -3,72 +3,13 @@ import _ from "lodash";
 import { Formats } from "../../../utils/constants";
 
 const outputFormatter = (outputType, properties) => {
-  if (outputType === Formats.SIMPLE) {
-    return simpleFormatter(properties);
-  } else if (outputType === Formats.TERMINAL) {
-    return terminalFormatter(properties);
-  } else if (outputType === Formats.KUBERNETES) {
-    return kubernetesFormatter(properties);
-  } else if (outputType === Formats.PROPERTIES) {
+  if (outputType === Formats.PROPERTIES) {
     return propertiesFormatter(properties);
   } else if (outputType === Formats.YAML) {
     return yamlFormatter(properties);
   } else {
     throw new Error("outputType " + outputType + "not supported");
   }
-};
-
-// see https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-relaxed-binding-from-environment-variables
-const getName = (property) =>
-  property
-    .split("=")[0]
-    .toUpperCase()
-    .replaceAll("-", "")
-    .replaceAll("].", "_") // don't do double underscore after list element
-    .replaceAll(".", "_")
-    .replaceAll("[", "_")
-    .replaceAll("]", "_");
-
-const getValue = (property) =>
-  property.split("=")[1].replace(/^["'](.+(?=["']$))["']$/, "$1"); // https://stackoverflow.com/a/19156197/1098564
-
-const simpleFormatter = (properties) => {
-  var result = "";
-  properties.forEach((property) => {
-    result = result
-      .concat(getName(property))
-      .concat("=")
-      .concat(getValue(property))
-      .concat("\n");
-  });
-  return result;
-};
-
-const terminalFormatter = (properties) => {
-  var result = "";
-  properties.forEach((property) => {
-    result = result
-      .concat(getName(property))
-      .concat("=")
-      .concat(getValue(property))
-      .concat(" ");
-  });
-  return result;
-};
-
-const kubernetesFormatter = (properties) => {
-  var result = "";
-  properties.forEach((property) => {
-    result = result
-      .concat("- name: ")
-      .concat(getName(property))
-      // .concat('\n  value: \'')
-      .concat("\n  value: ")
-      .concat("'" + getValue(property) + "'")
-      // .concat('\'\n')
-      .concat("\n");
-  });
-  return result;
 };
 
 const propertiesFormatter = (properties) => {
