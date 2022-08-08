@@ -32,6 +32,15 @@ const items = [
       },
     ],
   },
+  {
+    title: "Encoders/Decoders",
+    components: [
+      {
+        name: "Base64",
+        path: "/encoders/base64",
+      },
+    ],
+  },
 ];
 
 export default function Home() {

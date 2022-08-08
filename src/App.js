@@ -6,6 +6,7 @@ import ResponsiveAppBar from "./components/AppBar";
 import Home from "./pages/Home";
 import SpringPropertiesConverter from "./pages/Converter/SpringProperties";
 import UUIDGenerator from "./pages/Generator/UUID";
+import Base64Encoder from "./pages/Encoder/Base64";
 import { Container } from "@mui/material";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             element={<SpringPropertiesConverter />}
           />
           <Route path="/generators/uuid" element={<UUIDGenerator />} />
+          <Route path="/encoders/base64" element={<Base64Encoder />} />
         </Routes>
       </Container>
     </div>
