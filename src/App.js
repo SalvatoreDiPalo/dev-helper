@@ -27,12 +27,25 @@ function App() {
       <ResponsiveAppBar />
       <Container className="root-cont" component="main">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={buildComponentPage(
+              "Dev Helper",
+              <Home />,
+              "A must for developing"
+            )}
+          />
           <Route
             path="/converters/spring-properties"
-            element={<SpringPropertiesConverter />}
+            element={buildComponentPage(
+              "Spring Properties Converter",
+              <SpringPropertiesConverter />
+            )}
           />
-          <Route path="/generators/uuid" element={<UUIDGenerator />} />
+          <Route
+            path="/generators/uuid"
+            element={buildComponentPage("UUID Generator", <UUIDGenerator />)}
+          />
           <Route
             path="/encoders/base64"
             element={buildComponentPage(
