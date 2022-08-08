@@ -38,6 +38,10 @@ const items = [
         name: "Base64",
         path: "/encoders/base64",
       },
+      {
+        name: "Url",
+        path: "/encoders/url",
+      },
     ],
   },
 ];

@@ -10,6 +10,7 @@ import Base64Encoder from "./pages/Encoder/Base64";
 import { Container } from "@mui/material";
 
 import ComponentTemplate from "./templates/Component";
+import UrlEncoder from "./pages/Encoder/Url";
 
 const buildComponentPage = (title, component, description = "") => {
   return (
@@ -51,6 +52,13 @@ function App() {
             element={buildComponentPage(
               "Base64 Encoder / Decoder",
               <Base64Encoder />
+            )}
+          />
+          <Route
+            path="/encoders/url"
+            element={buildComponentPage(
+              "Url Encoder / Decoder",
+              <UrlEncoder />
             )}
           />
         </Routes>
