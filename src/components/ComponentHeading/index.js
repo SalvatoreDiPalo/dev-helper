@@ -5,7 +5,7 @@ export default function ComponentHeading({ title, description }) {
     <Box
       textAlign={"center"}
       px={{ xs: 2, sm: 0 }}
-      pb={{ xs: "2rem", sm: "3rem", md: "4rem" }}
+      pb={{ xs: "2rem", sm: "3rem", md: "3rem" }}
     >
       <h1>{title}</h1>
       {description && (
