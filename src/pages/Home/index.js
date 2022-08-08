@@ -20,6 +20,10 @@ const items = [
         name: "Spring Properties Converter",
         path: "/converters/spring-properties",
       },
+      {
+        name: "String Case Converter",
+        path: "/converters/string-case",
+      },
     ],
   },
   {

@@ -11,6 +11,7 @@ import { Container } from "@mui/material";
 
 import ComponentTemplate from "./templates/Component";
 import UrlEncoder from "./pages/Encoder/Url";
+import StringCaseConverter from "./pages/Converter/StringCase";
 
 const buildComponentPage = (title, component, description = "") => {
   return (
@@ -41,6 +42,13 @@ function App() {
             element={buildComponentPage(
               "Spring Properties Converter",
               <SpringPropertiesConverter />
+            )}
+          />
+          <Route
+            path="/converters/string-case"
+            element={buildComponentPage(
+              "String Case Converter",
+              <StringCaseConverter />
             )}
           />
           <Route
