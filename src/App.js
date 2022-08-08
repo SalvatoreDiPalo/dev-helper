@@ -9,22 +9,53 @@ import UUIDGenerator from "./pages/Generator/UUID";
 import Base64Encoder from "./pages/Encoder/Base64";
 import { Container } from "@mui/material";
 
+import ComponentTemplate from "./templates/Component";
+
+const buildComponentPage = (title, component, description = "") => {
+  return (
+    <ComponentTemplate
+      title={title}
+      description={description}
+      component={component}
+    />
+  );
+};
+
 function App() {
   return (
-    <div>
+    <>
       <ResponsiveAppBar />
-      <Container className="root-cont">
+      <Container className="root-cont" component="main">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={buildComponentPage(
+              "Dev Helper",
+              <Home />,
+              "A must for developing"
+            )}
+          />
           <Route
             path="/converters/spring-properties"
-            element={<SpringPropertiesConverter />}
+            element={buildComponentPage(
+              "Spring Properties Converter",
+              <SpringPropertiesConverter />
+            )}
           />
-          <Route path="/generators/uuid" element={<UUIDGenerator />} />
-          <Route path="/encoders/base64" element={<Base64Encoder />} />
+          <Route
+            path="/generators/uuid"
+            element={buildComponentPage("UUID Generator", <UUIDGenerator />)}
+          />
+          <Route
+            path="/encoders/base64"
+            element={buildComponentPage(
+              "Base64 Encoder / Decoder",
+              <Base64Encoder />
+            )}
+          />
         </Routes>
       </Container>
-    </div>
+    </>
   );
 }
 

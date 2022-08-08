@@ -3,7 +3,6 @@ import {
   CardActionArea,
   CardContent,
   Grid,
-  Box,
   Paper,
   Stack,
   Typography,
@@ -45,21 +44,10 @@ const items = [
 
 export default function Home() {
   return (
-    <div>
-      <Box
-        textAlign={"center"}
-        px={{ xs: 2, sm: 0 }}
-        pb={{ xs: "2rem", sm: "3rem", md: "4rem" }}
-      >
-        <h1>Dev Helper</h1>
-        <Typography variant="caption" color="secondary">
-          A must for developing
-        </Typography>
-      </Box>
-
+    <>
       <Stack spacing={2}>
         {items &&
-          items.map((item) => (
+          items.map((item, index) => (
             <Paper
               variant="outlined"
               css={css`
@@ -70,6 +58,7 @@ export default function Home() {
                   border-color: ${theme.palette.primary.main};
                 }
               `}
+              key={`${item.title}-${index}`}
             >
               <Stack spacing={2}>
                 <Typography variant="h6">{item.title}</Typography>
@@ -82,8 +71,8 @@ export default function Home() {
                 >
                   <Grid container spacing={2}>
                     {item.components &&
-                      item.components.map((component) => (
-                        <Grid item>
+                      item.components.map((component, indexComponent) => (
+                        <Grid item key={`${component.name}-${indexComponent}`}>
                           <Card>
                             <CardActionArea component="a" href={component.path}>
                               <CardContent>{component.name}</CardContent>
@@ -97,6 +86,6 @@ export default function Home() {
             </Paper>
           ))}
       </Stack>
-    </div>
+    </>
   );
 }

@@ -69,9 +69,7 @@ export default function UUIDGenerator() {
   }, [version, format, refresh]);
 
   return (
-    <Paper sx={{ p: 3 }}>
-      <h1>UUID Generator</h1>
-
+    <Paper variant="outlined" sx={{ p: 3 }}>
       <Box
         component="form"
         noValidate

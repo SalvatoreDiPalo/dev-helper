@@ -79,7 +79,7 @@ export default function SpringPropertiesConverter() {
 
   return (
     <Stack spacing={3}>
-      <Paper sx={{ p: 3 }}>
+      <Paper variant="outlined" sx={{ p: 3 }}>
         <Stack spacing={1}>
           <FormControl>
             <InputLabel id="input-type-select-label">Input</InputLabel>
@@ -111,7 +111,7 @@ export default function SpringPropertiesConverter() {
           />
         </Stack>
       </Paper>
-      <Paper sx={{ p: 3 }}>
+      <Paper variant="outlined" sx={{ p: 3 }}>
         <Stack spacing={1}>
           <FormControl>
             <InputLabel id="output-type-select-label">Output</InputLabel>
