@@ -15,6 +15,7 @@ import ContentCopy from "@mui/icons-material/ContentCopy";
 import theme from "../../../theme";
 
 import { v1, v4 } from "uuid";
+import ComponentHeading from "../../../components/ComponentHeading";
 
 const Versions = {
   V1: "1",
@@ -36,7 +37,7 @@ const generateUuid = (uuidVersion) => {
   }
 };
 
-export default function UUIDGenerator() {
+export default function UUIDGenerator({ title, description }) {
   const defaultVersion = Versions.V4;
   const [version, setVersion] = useState(defaultVersion);
 
@@ -69,76 +70,83 @@ export default function UUIDGenerator() {
   }, [version, format, refresh]);
 
   return (
-    <Paper variant="outlined" sx={{ p: 3 }}>
-      <Box
-        component="form"
-        noValidate
-        autoComplete="off"
-        paddingY={5}
-        sx={{
-          "& > :not(style)": { textAlign: "center", my: 1 },
-        }}
-      >
-        <Paper
-          variant="outlined"
+    <>
+      <ComponentHeading title={title} description={description} />
+      <Paper variant="outlined" sx={{ p: 3 }}>
+        <Box
+          component="form"
+          noValidate
+          autoComplete="off"
+          paddingY={5}
           sx={{
-            p: "2px 4px",
-            display: "flex",
-            alignItems: "center",
-            width: "100%",
-            borderColor: theme.palette.secondary.main,
+            "& > :not(style)": { textAlign: "center", my: 1 },
           }}
         >
-          <InputBase
-            sx={{ ml: 1, flex: 1 }}
-            value={uuid}
-            inputProps={{ "aria-label": "Generated uuid" }}
-          />
-          <IconButton
-            sx={{ p: "10px" }}
-            aria-label="Copy UUID"
-            onClick={() => {
-              navigator.clipboard.writeText(uuid);
+          <Paper
+            variant="outlined"
+            sx={{
+              p: "2px 4px",
+              display: "flex",
+              alignItems: "center",
+              width: "100%",
+              borderColor: theme.palette.secondary.main,
             }}
           >
-            <ContentCopy />
-          </IconButton>
-          <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <IconButton
-            color="primary"
-            sx={{ p: "10px" }}
-            aria-label="Refresh UUID"
-            onClick={() => setRefresh(!refresh)}
-          >
-            <Cached />
-          </IconButton>
-        </Paper>
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              value={uuid}
+              inputProps={{ "aria-label": "Generated uuid" }}
+            />
+            <IconButton
+              sx={{ p: "10px" }}
+              aria-label="Copy UUID"
+              onClick={() => {
+                navigator.clipboard.writeText(uuid);
+              }}
+            >
+              <ContentCopy />
+            </IconButton>
+            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+            <IconButton
+              color="primary"
+              sx={{ p: "10px" }}
+              aria-label="Refresh UUID"
+              onClick={() => setRefresh(!refresh)}
+            >
+              <Cached />
+            </IconButton>
+          </Paper>
 
-        <Grid container>
-          <Grid item md={6} xs={12}>
-            <ToggleButtonGroup
-              color="primary"
-              value={version}
-              exclusive
-              onChange={handleVersionChange}
-            >
-              <ToggleButton value={Versions.V1}>{Versions.V1}</ToggleButton>
-              <ToggleButton value={Versions.V4}>{Versions.V4}</ToggleButton>
-            </ToggleButtonGroup>
+          <Grid container>
+            <Grid item md={6} xs={12}>
+              <ToggleButtonGroup
+                color="primary"
+                value={version}
+                exclusive
+                onChange={handleVersionChange}
+              >
+                <ToggleButton value={Versions.V1}>{Versions.V1}</ToggleButton>
+                <ToggleButton value={Versions.V4}>{Versions.V4}</ToggleButton>
+              </ToggleButtonGroup>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <ToggleButtonGroup
+                color="primary"
+                value={format}
+                exclusive
+                onChange={handleFormatChange}
+              >
+                <ToggleButton value={Formats.LOWER_CASE}>
+                  Lower case
+                </ToggleButton>
+                <ToggleButton value={Formats.UPPER_CASE}>
+                  Upper case
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </Grid>
           </Grid>
-          <Grid item md={6} xs={12}>
-            <ToggleButtonGroup
-              color="primary"
-              value={format}
-              exclusive
-              onChange={handleFormatChange}
-            >
-              <ToggleButton value={Formats.LOWER_CASE}>Lower case</ToggleButton>
-              <ToggleButton value={Formats.UPPER_CASE}>Upper case</ToggleButton>
-            </ToggleButtonGroup>
-          </Grid>
-        </Grid>
-      </Box>
-    </Paper>
+        </Box>
+      </Paper>
+    </>
   );
 }

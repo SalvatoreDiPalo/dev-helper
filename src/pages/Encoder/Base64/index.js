@@ -16,14 +16,15 @@ import { decode as base64_decode, encode as base64_encode } from "base-64";
 
 import theme from "../../../theme";
 
-import {loremIpsum} from "../../../utils/constants";
+import { loremIpsum } from "../../../utils/constants";
+import ComponentHeading from "../../../components/ComponentHeading";
 
 const Formats = {
   ENCODE: 1,
   DECODE: 2,
 };
 
-export default function Base64Encoder() {
+export default function Base64Encoder({ title, description }) {
   const defaultFormat = Formats.ENCODE;
   const [format, setFormat] = useState(defaultFormat);
 
@@ -59,7 +60,8 @@ export default function Base64Encoder() {
   }, [format, inputText]);
 
   return (
-    <div>
+    <>
+      <ComponentHeading title={title} description={description} />
       <Paper variant="outlined" sx={{ p: 3, mb: 2 }}>
         <Box component="form" noValidate autoComplete="off">
           <Paper
@@ -146,6 +148,6 @@ export default function Base64Encoder() {
           </Paper>
         </Box>
       </Paper>
-    </div>
+    </>
   );
 }

@@ -1,74 +1,54 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 
-import ResponsiveAppBar from "./components/AppBar";
-
-import Home from "./pages/Home";
-import SpringPropertiesConverter from "./pages/Converter/SpringProperties";
-import UUIDGenerator from "./pages/Generator/UUID";
-import Base64Encoder from "./pages/Encoder/Base64";
 import { Container } from "@mui/material";
 
-import ComponentTemplate from "./templates/Component";
-import UrlEncoder from "./pages/Encoder/Url";
-import StringCaseConverter from "./pages/Converter/StringCase";
+import ResponsiveAppBar from "./components/AppBar";
+import ComponentsContainer from "./templates/ComponentsContainer";
 
-const buildComponentPage = (title, component, description = "") => {
-  return (
-    <ComponentTemplate
-      title={title}
-      description={description}
-      component={component}
-    />
-  );
+import Home from "./pages/Home";
+
+import { components } from "./utils/components";
+
+const ComponentPage = () => {
+  return <Outlet />;
 };
 
 function App() {
+  const routes = components.map((route, index) => (
+    <Route
+      path={route.path}
+      element={<ComponentPage />}
+      key={`${route.title}-${index}`}
+    >
+      <Route
+        index
+        element={
+          <ComponentsContainer
+            title={route.title}
+            components={route.components}
+          />
+        }
+      />
+      {route.components.map((item) => {
+        return (
+          <Route
+            path={item.endpoint}
+            element={item.component}
+            key={item.endpoint}
+          />
+        );
+      })}
+    </Route>
+  ));
+
   return (
     <>
       <ResponsiveAppBar />
       <Container className="root-cont" component="main">
         <Routes>
-          <Route
-            path="/"
-            element={buildComponentPage(
-              "Dev Helper",
-              <Home />,
-              "A must for developing"
-            )}
-          />
-          <Route
-            path="/converters/spring-properties"
-            element={buildComponentPage(
-              "Spring Properties Converter",
-              <SpringPropertiesConverter />
-            )}
-          />
-          <Route
-            path="/converters/string-case"
-            element={buildComponentPage(
-              "String Case Converter",
-              <StringCaseConverter />
-            )}
-          />
-          <Route
-            path="/generators/uuid"
-            element={buildComponentPage("UUID Generator", <UUIDGenerator />)}
-          />
-          <Route
-            path="/encoders/base64"
-            element={buildComponentPage(
-              "Base64 Encoder / Decoder",
-              <Base64Encoder />
-            )}
-          />
-          <Route
-            path="/encoders/url"
-            element={buildComponentPage(
-              "Url Encoder / Decoder",
-              <UrlEncoder />
-            )}
-          />
+          <Route path="/" element={<Home />} />
+          {routes}
         </Routes>
       </Container>
     </>
