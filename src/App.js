@@ -26,6 +26,7 @@ function App() {
         element={
           <ComponentsContainer
             title={route.title}
+            path={route.path}
             components={route.components}
           />
         }

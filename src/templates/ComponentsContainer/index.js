@@ -5,7 +5,7 @@ import React from "react";
 import theme from "../../theme";
 import ComponentHeading from "../../components/ComponentHeading";
 
-export default function ComponentsContainer({ title, components }) {
+export default function ComponentsContainer({ title, path, components }) {
   return (
     <>
       <ComponentHeading title={title} />
@@ -32,7 +32,7 @@ export default function ComponentsContainer({ title, components }) {
               components.map((component, indexComponent) => (
                 <Grid item key={`${component.name}-${indexComponent}`}>
                   <Card>
-                    <CardActionArea component="a" href={component.path}>
+                    <CardActionArea component="a" href={`/${path}/${component.endpoint}`}>
                       <CardContent>{component.name}</CardContent>
                     </CardActionArea>
                   </Card>
