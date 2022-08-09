@@ -46,11 +46,15 @@ export default function UUIDGenerator({ title, description }) {
   const [refresh, setRefresh] = useState(false);
 
   const handleVersionChange = (event, newVersion) => {
-    setVersion(newVersion);
+    if (newVersion !== null) {
+      setVersion(newVersion);
+    }
   };
 
   const handleFormatChange = (event, newFormat) => {
-    setFormat(newFormat);
+    if (newFormat !== null) {
+      setFormat(newFormat);
+    }
   };
 
   const uuid = useMemo(() => {
