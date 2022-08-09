@@ -37,7 +37,9 @@ export default function Base64Encoder({ title, description }) {
   };
 
   const handleFormatChange = (event, newFormat) => {
-    setFormat(newFormat);
+    if (newFormat !== null) {
+      setFormat(newFormat);
+    }
   };
 
   const generatedValue = useMemo(() => {
