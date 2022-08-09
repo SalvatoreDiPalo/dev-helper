@@ -14,8 +14,6 @@ const deflate = (json, prefix) => {
   var keys = Object.keys(json);
   keys.forEach(function (key) {
     var _prefix;
-
-    console.log("Key:", key);
     var _currPrefix = key || "";
     if (isNumeric(key)) {
       _currPrefix = "[" + _currPrefix + "]";

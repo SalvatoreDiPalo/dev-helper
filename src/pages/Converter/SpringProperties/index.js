@@ -17,7 +17,6 @@ import { DefaultsMap, Formats } from "../../../utils/constants";
 import ComponentHeading from "../../../components/ComponentHeading";
 
 export default function SpringPropertiesConverter({ title, description }) {
-  console.log("Title", title);
   const defaultType = Formats.YAML;
   const [inputType, setInputType] = useState(defaultType);
   const [inputText, setInputText] = useState(
@@ -31,7 +30,6 @@ export default function SpringPropertiesConverter({ title, description }) {
   const [model, setModel] = useState({});
 
   const applyInputText = useCallback((type, text) => {
-    console.log("ApplyInputText", type, text);
     setError();
     try {
       setInputText(text);
@@ -75,10 +73,8 @@ export default function SpringPropertiesConverter({ title, description }) {
   var outputTextValue;
   try {
     const properties = deflate(model.value); // Convert the JSON structure into an array of strings
-    console.log(model.value);
     outputTextValue = properties ? outputFormatter(outputType, properties) : "";
   } catch (e) {
-    console.log(e);
     outputTextValue = "";
   }
 
