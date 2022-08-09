@@ -102,6 +102,19 @@ export default function StringCaseConverter({ title, description }) {
               <ToggleButton value={Formats.LOWER_CASE}>Lower case</ToggleButton>
               <ToggleButton value={Formats.UPPER_CASE}>Upper case</ToggleButton>
               <ToggleButton value={Formats.CAMEL_CASE}>Camel case</ToggleButton>
+            </ToggleButtonGroup>
+            <ToggleButtonGroup
+              color="primary"
+              value={format}
+              exclusive
+              fullWidth
+              onChange={handleFormatChange}
+              css={css`
+                & > button {
+                  border-radius: 0;
+                }
+              `}
+            >
               <ToggleButton value={Formats.CAPITALIZE}>Capitalize</ToggleButton>
               <ToggleButton value={Formats.KEBAB_CASE}>Kebab case</ToggleButton>
               <ToggleButton value={Formats.SNAKE_CASE}>Snake case</ToggleButton>
