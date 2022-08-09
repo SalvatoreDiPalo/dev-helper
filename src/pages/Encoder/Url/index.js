@@ -35,7 +35,9 @@ export default function UrlEncoder({ title, description }) {
   };
 
   const handleFormatChange = (event, newFormat) => {
-    setFormat(newFormat);
+    if(newFormat !== null) {
+      setFormat(newFormat);
+    }
   };
 
   const generatedValue = useMemo(() => {
