@@ -11,6 +11,7 @@ import {
 import { css } from "@emotion/react";
 import React from "react";
 import theme from "../../theme";
+import ComponentHeading from "../../components/ComponentHeading";
 
 const items = [
   {
@@ -53,6 +54,10 @@ const items = [
 export default function Home() {
   return (
     <>
+      <ComponentHeading
+        title="Dev Helper"
+        description="A must for developing"
+      />
       <Stack spacing={2}>
         {items &&
           items.map((item, index) => (
