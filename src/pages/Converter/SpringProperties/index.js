@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useMemo } from "react";
 import {
   Paper,
   Stack,
@@ -30,7 +30,7 @@ export default function SpringPropertiesConverter({ title, description }) {
   const [model, setModel] = useState({});
 
   const applyInputText = useCallback((type, text) => {
-    setError();
+    setError("");
     try {
       setInputText(text);
       const mapType = DefaultsMap.get(type);
@@ -39,13 +39,8 @@ export default function SpringPropertiesConverter({ title, description }) {
         inputModelType: mapType?.modelType,
         value: value,
       });
-      // setModel(data)
-      //setAlertText("");
     } catch (e) {
-      //setAlertText(e.message);
-      console.error("ApplyInputText", e.message);
       setError(e.message);
-      // setProperties([]);
       setModel({});
     }
   }, []);
@@ -57,7 +52,7 @@ export default function SpringPropertiesConverter({ title, description }) {
   const handleInputTypeChange = (event) => {
     const value = event.target.value;
     setInputType(value);
-    setOutputType(value == Formats.YAML ? Formats.PROPERTIES : Formats.YAML);
+    setOutputType(value === Formats.YAML ? Formats.PROPERTIES : Formats.YAML);
   };
 
   const handleInputChange = (event) => {
@@ -67,16 +62,18 @@ export default function SpringPropertiesConverter({ title, description }) {
   const handleOutputTypeChange = (event) => {
     const value = event.target.value;
     setOutputType(value);
-    setInputType(value == Formats.YAML ? Formats.PROPERTIES : Formats.YAML);
+    setInputType(value === Formats.YAML ? Formats.PROPERTIES : Formats.YAML);
   };
 
-  var outputTextValue;
-  try {
-    const properties = deflate(model.value); // Convert the JSON structure into an array of strings
-    outputTextValue = properties ? outputFormatter(outputType, properties) : "";
-  } catch (e) {
-    outputTextValue = "";
-  }
+  var outputTextValue = useMemo(() => {
+    try {
+      // Convert the JSON structure into an array of strings
+      const properties = deflate(model.value);
+      return properties ? outputFormatter(outputType, properties) : "";
+    } catch (e) {
+      return "";
+    }
+  }, [model, outputType]);
 
   return (
     <>
@@ -106,7 +103,7 @@ export default function SpringPropertiesConverter({ title, description }) {
               onChange={handleInputChange}
               multiline
               fullWidth
-              error={error}
+              error={error !== ""}
               helperText={error}
               minRows={10}
               maxRows={30}
