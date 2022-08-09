@@ -38,7 +38,14 @@ export default function Home() {
               key={`${item.title}-${index}`}
             >
               <Stack spacing={2}>
-                <Typography variant="h6">{item.title}</Typography>
+                <Typography
+                  href={`/${item.path}`}
+                  variant="h6"
+                  component="a"
+                  sx={{ textDecoration: "none" }}
+                >
+                  {item.title}
+                </Typography>
                 <Paper
                   sx={{
                     p: "40px",
