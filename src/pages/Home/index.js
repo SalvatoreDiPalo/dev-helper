@@ -22,7 +22,7 @@ export default function Home() {
         title="Dev Helper"
         description="A must for developing"
       />
-      <Stack spacing={2}>
+      <Stack spacing={2} sx={{pb: 2}}>
         {components &&
           components.map((item, index) => (
             <Paper
