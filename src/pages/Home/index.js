@@ -13,43 +13,7 @@ import React from "react";
 import theme from "../../theme";
 import ComponentHeading from "../../components/ComponentHeading";
 
-const items = [
-  {
-    title: "Converters",
-    components: [
-      {
-        name: "Spring Properties Converter",
-        path: "/converters/spring-properties",
-      },
-      {
-        name: "String Case Converter",
-        path: "/converters/string-case",
-      },
-    ],
-  },
-  {
-    title: "Generators",
-    components: [
-      {
-        name: "UUID Generator",
-        path: "/generators/uuid",
-      },
-    ],
-  },
-  {
-    title: "Encoders/Decoders",
-    components: [
-      {
-        name: "Base64",
-        path: "/encoders/base64",
-      },
-      {
-        name: "Url",
-        path: "/encoders/url",
-      },
-    ],
-  },
-];
+import { components } from "../../utils/components";
 
 export default function Home() {
   return (
@@ -59,8 +23,8 @@ export default function Home() {
         description="A must for developing"
       />
       <Stack spacing={2}>
-        {items &&
-          items.map((item, index) => (
+        {components &&
+          components.map((item, index) => (
             <Paper
               variant="outlined"
               css={css`
@@ -87,7 +51,10 @@ export default function Home() {
                       item.components.map((component, indexComponent) => (
                         <Grid item key={`${component.name}-${indexComponent}`}>
                           <Card>
-                            <CardActionArea component="a" href={component.path}>
+                            <CardActionArea
+                              component="a"
+                              href={`/${item.path}/${component.endpoint}`}
+                            >
                               <CardContent>{component.name}</CardContent>
                             </CardActionArea>
                           </Card>
