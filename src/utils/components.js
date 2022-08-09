@@ -11,14 +11,14 @@ export const components = [
     path: "converters",
     components: [
       {
-        name: "Spring Properties Converter",
         endpoint: "spring-properties",
-        component: <SpringPropertiesConverter />,
+        component: (
+          <SpringPropertiesConverter title="Spring Properties Converter" />
+        ),
       },
       {
-        name: "String Case Converter",
         endpoint: "string-case",
-        component: <StringCaseConverter />,
+        component: <StringCaseConverter title="String Case Converter" />,
       },
     ],
   },
@@ -27,9 +27,8 @@ export const components = [
     path: "generators",
     components: [
       {
-        name: "UUID Generator",
         endpoint: "uuid",
-        component: <UUIDGenerator />,
+        component: <UUIDGenerator title="UUID Generator" />,
       },
     ],
   },
@@ -38,14 +37,12 @@ export const components = [
     path: "encoders",
     components: [
       {
-        name: "Base64",
         endpoint: "base64",
-        component: <Base64Encoder />,
+        component: <Base64Encoder title="Base64 Encoder/Decoder" />,
       },
       {
-        name: "Url",
         endpoint: "url",
-        component: <UrlEncoder />,
+        component: <UrlEncoder title="Url Encoder/Decoder" />,
       },
     ],
   },

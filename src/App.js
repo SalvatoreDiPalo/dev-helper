@@ -15,27 +15,27 @@ const ComponentPage = () => {
 };
 
 function App() {
-  const routes = components.map((item, index) => (
+  const routes = components.map((route, index) => (
     <Route
-      path={item.path}
+      path={route.path}
       element={<ComponentPage />}
-      key={`${item.title}-${index}`}
+      key={`${route.title}-${index}`}
     >
       <Route
         index
         element={
           <ComponentsContainer
-            title={item.title}
-            components={item.components}
+            title={route.title}
+            components={route.components}
           />
         }
       />
-      {item.components.map((component) => {
+      {route.components.map((item) => {
         return (
           <Route
-            path={component.endpoint}
-            element={component.component}
-            key={component.name}
+            path={item.endpoint}
+            element={item.component}
+            key={item.endpoint}
           />
         );
       })}

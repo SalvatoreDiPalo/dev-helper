@@ -15,13 +15,14 @@ import { css } from "@emotion/react";
 import theme from "../../../theme";
 
 import { defaultUri } from "../../../utils/constants";
+import ComponentHeading from "../../../components/ComponentHeading";
 
 const Formats = {
   ENCODE: 1,
   DECODE: 2,
 };
 
-export default function UrlEncoder() {
+export default function UrlEncoder({ title, description }) {
   const defaultFormat = Formats.ENCODE;
   const [format, setFormat] = useState(defaultFormat);
 
@@ -57,7 +58,8 @@ export default function UrlEncoder() {
   }, [format, inputText]);
 
   return (
-    <div>
+    <>
+      <ComponentHeading title={title} description={description} />
       <Paper variant="outlined" sx={{ p: 3, mb: 2 }}>
         <Box component="form" noValidate autoComplete="off">
           <Paper
@@ -144,6 +146,6 @@ export default function UrlEncoder() {
           </Paper>
         </Box>
       </Paper>
-    </div>
+    </>
   );
 }

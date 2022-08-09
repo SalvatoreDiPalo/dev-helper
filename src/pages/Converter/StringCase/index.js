@@ -16,6 +16,7 @@ import _ from "lodash";
 
 import theme from "../../../theme";
 import { loremIpsum } from "../../../utils/constants";
+import ComponentHeading from "../../../components/ComponentHeading";
 
 const Formats = {
   LOWER_CASE: 1,
@@ -26,7 +27,7 @@ const Formats = {
   SNAKE_CASE: 6,
 };
 
-export default function StringCaseConverter() {
+export default function StringCaseConverter({ title, description }) {
   const defaultFormat = Formats.LOWER_CASE;
   const [format, setFormat] = useState(defaultFormat);
 
@@ -74,7 +75,8 @@ export default function StringCaseConverter() {
   }, [format, inputText]);
 
   return (
-    <div>
+    <>
+      <ComponentHeading title={title} description={description} />
       <Paper variant="outlined" sx={{ p: 3, mb: 2 }}>
         <Box component="form" noValidate autoComplete="off">
           <Paper
@@ -165,6 +167,6 @@ export default function StringCaseConverter() {
           </Paper>
         </Box>
       </Paper>
-    </div>
+    </>
   );
 }

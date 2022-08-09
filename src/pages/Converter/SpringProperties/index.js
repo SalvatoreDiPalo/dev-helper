@@ -1,18 +1,23 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Paper, Stack, TextField } from "@mui/material";
-
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import {
+  Paper,
+  Stack,
+  TextField,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+} from "@mui/material";
 
 import inputHandler from "./inputHandler";
 import deflate from "./deflate";
 import outputFormatter from "./outputFormatter";
 
 import { DefaultsMap, Formats } from "../../../utils/constants";
+import ComponentHeading from "../../../components/ComponentHeading";
 
-export default function SpringPropertiesConverter() {
+export default function SpringPropertiesConverter({ title, description }) {
+  console.log("Title", title);
   const defaultType = Formats.YAML;
   const [inputType, setInputType] = useState(defaultType);
   const [inputText, setInputText] = useState(
@@ -78,68 +83,71 @@ export default function SpringPropertiesConverter() {
   }
 
   return (
-    <Stack spacing={3}>
-      <Paper variant="outlined" sx={{ p: 3 }}>
-        <Stack spacing={1}>
-          <FormControl>
-            <InputLabel id="input-type-select-label">Input</InputLabel>
-            <Select
-              labelId="input-type-select-label"
-              id="input-type-select"
-              value={inputType}
-              onChange={handleInputTypeChange}
+    <>
+      <ComponentHeading title={title} description={description} />
+      <Stack spacing={3}>
+        <Paper variant="outlined" sx={{ p: 3 }}>
+          <Stack spacing={1}>
+            <FormControl>
+              <InputLabel id="input-type-select-label">Input</InputLabel>
+              <Select
+                labelId="input-type-select-label"
+                id="input-type-select"
+                value={inputType}
+                onChange={handleInputTypeChange}
+                fullWidth
+                label="Input"
+              >
+                {Object.keys(Formats).map((item, index) => (
+                  <MenuItem key={`input-${index}`} value={Formats[item]}>
+                    {Formats[item]}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <TextField
+              id="input-textarea"
+              onChange={handleInputChange}
+              multiline
               fullWidth
-              label="Input"
-            >
-              {Object.keys(Formats).map((item, index) => (
-                <MenuItem key={`input-${index}`} value={Formats[item]}>
-                  {Formats[item]}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <TextField
-            id="input-textarea"
-            onChange={handleInputChange}
-            multiline
-            fullWidth
-            error={error}
-            helperText={error}
-            minRows={10}
-            maxRows={30}
-            defaultValue={inputText}
-          />
-        </Stack>
-      </Paper>
-      <Paper variant="outlined" sx={{ p: 3 }}>
-        <Stack spacing={1}>
-          <FormControl>
-            <InputLabel id="output-type-select-label">Output</InputLabel>
-            <Select
-              labelId="output-type-select-label"
-              id="output-type-select"
-              value={outputType}
-              onChange={handleOutputTypeChange}
+              error={error}
+              helperText={error}
+              minRows={10}
+              maxRows={30}
+              defaultValue={inputText}
+            />
+          </Stack>
+        </Paper>
+        <Paper variant="outlined" sx={{ p: 3 }}>
+          <Stack spacing={1}>
+            <FormControl>
+              <InputLabel id="output-type-select-label">Output</InputLabel>
+              <Select
+                labelId="output-type-select-label"
+                id="output-type-select"
+                value={outputType}
+                onChange={handleOutputTypeChange}
+                fullWidth
+                label="Input"
+              >
+                {Object.keys(Formats).map((item, index) => (
+                  <MenuItem key={`input-${index}`} value={Formats[item]}>
+                    {Formats[item]}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <TextField
+              id="output-textarea"
+              multiline
               fullWidth
-              label="Input"
-            >
-              {Object.keys(Formats).map((item, index) => (
-                <MenuItem key={`input-${index}`} value={Formats[item]}>
-                  {Formats[item]}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <TextField
-            id="output-textarea"
-            multiline
-            fullWidth
-            minRows={10}
-            maxRows={30}
-            value={outputTextValue}
-          />
-        </Stack>
-      </Paper>
-    </Stack>
+              minRows={10}
+              maxRows={30}
+              value={outputTextValue}
+            />
+          </Stack>
+        </Paper>
+      </Stack>
+    </>
   );
 }
